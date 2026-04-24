@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body { font-family: 'DM Sans', sans-serif; background-color: #030303; color: #e5e5e5; margin: 0; overflow-x: hidden; }
+}
+
+@layer utilities {
+    .glass-dark { background: rgba(5, 5, 5, 0.6); backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); border: 1px solid rgba(255, 255, 255, 0.03); box-shadow: 0 30px 60px rgba(0,0,0,0.8); }
+    .gold-gradient-text { background: linear-gradient(90deg, #ffb340, #ff8800, #cc6a00); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    
+    .grain {
+        position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+        pointer-events: none; z-index: 9999;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        opacity: 0.03; mix-blend-mode: overlay;
+    }
+
+    .shimmer-text { animation: goldShimmer 4s infinite alternate; }
+    .light-flare { animation: flarePulse 8s infinite alternate; mix-blend-mode: screen; filter: blur(100px); }
+
+    .btn-luxury {
+        background: linear-gradient(135deg, #ffb340, #ff8800);
+        color: #0f0300;
+        border: 1px solid #ffb340;
+        box-shadow: 0 0 20px rgba(255,136,0,0.3);
+        position: relative;
+    }
+    .btn-luxury::after {
+        content: '';
+        position: absolute; inset: -4px;
+        border-radius: 9999px;
+        border: 1px solid rgba(255,179,64, 0.4);
+        opacity: 0; transition: all 0.3s ease;
+    }
+    .btn-luxury:hover::after { opacity: 1; transform: scale(1.05); }
+    .btn-luxury:hover { box-shadow: 0 0 40px rgba(255,179,64,0.5); }
+}
+
+@keyframes goldShimmer {
+    0% { text-shadow: 0 0 10px rgba(255,136,0, 0.1); }
+    50% { text-shadow: 0 0 40px rgba(255,179,64, 0.4); }
+    100% { text-shadow: 0 0 10px rgba(255,136,0, 0.1); }
+}
+
+@keyframes flarePulse {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.1); }
+}
+
+@keyframes flowPulse {
+    0%, 100% { stroke-dashoffset: 200; opacity: 0.3; }
+    50% { stroke-dashoffset: 0; opacity: 1; }
+}
+@layer utilities {
+    .flow-path {
+        stroke-dasharray: 10 5;
+        animation: flowPulse 2s ease-in-out infinite;
+    }
+    .flow-path-delay1 { animation-delay: 0.3s; }
+    .flow-path-delay2 { animation-delay: 0.6s; }
+}
+
+@keyframes nodeGlow {
+    0%, 100% { filter: drop-shadow(0 0 4px rgba(255,136,0,0.4)); }
+    50% { filter: drop-shadow(0 0 12px rgba(255,179,64,0.9)); }
+}
+@layer utilities {
+    .node-glow { animation: nodeGlow 2s ease-in-out infinite; }
+}
+
+@keyframes energyBolt {
+    0% { stroke-dashoffset: 100; opacity: 0; }
+    20% { opacity: 1; }
+    100% { stroke-dashoffset: -100; opacity: 0; }
+}
+@layer utilities {
+    .energy-bolt {
+        stroke-dasharray: 8 4;
+        animation: energyBolt 1.5s ease-in-out infinite;
+    }
+
+    .data-badge {
+        background: rgba(255, 136, 0, 0.1);
+        border: 1px solid rgba(255, 136, 0, 0.25);
+        border-radius: 4px;
+        padding: 4px 10px;
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        color: #ff8800;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+
+    .mode-btn {
+        padding: 14px 32px;
+        border: 1px solid rgba(255, 136, 0, 0.25);
+        background: transparent;
+        color: rgba(255,255,255,0.4);
+        font-family: 'DM Sans', sans-serif;
+        font-size: 11px;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all 0.4s ease;
+        position: relative;
+        overflow: hidden;
+    }
+    .mode-btn::before {
+        content: '';
+        position: absolute; inset: 0;
+        background: linear-gradient(135deg, #ffb340, #ff8800);
+        transform: scaleX(0); transform-origin: left;
+        transition: transform 0.4s cubic-bezier(0.23,1,0.32,1);
+        z-index: 0;
+    }
+    .mode-btn.active { color: #0f0300; border-color: #ff8800; box-shadow: 0 0 30px rgba(255,136,0,0.3); }
+    .mode-btn.active::before { transform: scaleX(1); }
+    .mode-btn span { position: relative; z-index: 1; }
+    .mode-btn:hover:not(.active) { color: rgba(255,255,255,0.8); border-color: rgba(255,136,0,0.5); }
+}

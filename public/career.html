@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cynova Energy | Careers</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        luxury: { 900: '#230a00', 950: '#0f0300' },
+                        gold: { 400: '#ffb340', 500: '#ff8800', 600: '#cc6a00' },
+                        ember: { 500: '#ff6b00' }
+                    },
+                    fontFamily: {
+                        sans: ['"DM Sans"', 'sans-serif'],
+                        serif: ['"Cormorant Garamond"', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: 'DM Sans', sans-serif; background-color: #0f0300; color: #e5e5e5; margin: 0; overflow-x: hidden; }
+
+        .glass-dark {
+            background: rgba(5, 5, 5, 0.6);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+        }
+        .glass-gold {
+            background: rgba(255, 136, 0, 0.06);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 136, 0, 0.18);
+            box-shadow: 0 0 40px rgba(255, 136, 0, 0.05), inset 0 1px 0 rgba(255, 136, 0, 0.1);
+        }
+        .gold-gradient-text {
+            background: linear-gradient(90deg, #ffb340, #ff8800, #cc6a00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .grain {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none; z-index: 9999;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            opacity: 0.03; mix-blend-mode: overlay;
+        }
+
+        @keyframes goldShimmer {
+            0% { text-shadow: 0 0 10px rgba(255,136,0, 0.1); }
+            50% { text-shadow: 0 0 40px rgba(255,179,64, 0.4); }
+            100% { text-shadow: 0 0 10px rgba(255,136,0, 0.1); }
+        }
+        .shimmer-text { animation: goldShimmer 4s infinite alternate; }
+
+        .btn-luxury {
+            background: linear-gradient(135deg, #ffb340, #ff8800);
+            color: #0f0300;
+            border: 1px solid #ffb340;
+            box-shadow: 0 0 20px rgba(255,136,0,0.3);
+            position: relative; cursor: pointer;
+        }
+        .btn-luxury::after {
+            content: ''; position: absolute; inset: -4px;
+            border-radius: 9999px; border: 1px solid rgba(255,179,64, 0.4);
+            opacity: 0; transition: all 0.3s ease;
+        }
+        .btn-luxury:hover::after { opacity: 1; transform: scale(1.05); }
+        .btn-luxury:hover { box-shadow: 0 0 40px rgba(255,179,64,0.5); }
+
+        .industrial-card {
+            position: relative;
+            background: rgba(8, 8, 8, 0.7);
+            border: 1px solid rgba(255, 136, 0, 0.12);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255, 136, 0, 0.08);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            overflow: hidden;
+        }
+        .industrial-card::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: linear-gradient(135deg, rgba(255,136,0,0.05) 0%, transparent 50%);
+            opacity: 0; transition: opacity 0.5s;
+        }
+        .industrial-card:hover { transform: translateY(-8px) scale(1.01); border-color: rgba(255, 136, 0, 0.35); box-shadow: 0 40px 80px rgba(0,0,0,0.8), 0 0 40px rgba(255,136,0,0.08), inset 0 1px 0 rgba(255, 136, 0, 0.2); }
+        .industrial-card:hover::before { opacity: 1; }
+
+        .data-badge {
+            background: rgba(255, 136, 0, 0.1);
+            border: 1px solid rgba(255, 136, 0, 0.25);
+            border-radius: 4px;
+            padding: 4px 10px;
+            font-size: 11px;
+            letter-spacing: 0.1em;
+            color: #ff8800;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in-up { animation: fadeInUp 0.8s ease-out forwards; }
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+
+        /* Loading Spinner */
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(255,136,0, 0.1);
+            border-top-color: #ff8800;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        /* Select styling for dark mode */
+        select option {
+            background-color: #0f0300;
+            color: #e5e5e5;
+        }
+    </style>
+</head>
+<body>
+    <div class="grain"></div>
+
+    <!-- Header -->
+    <header class="w-full border-b border-gold-500/10 py-5 relative z-50">
+        <div class="container mx-auto px-6 flex items-center justify-between">
+            <a href="/" class="text-2xl font-serif tracking-widest flex items-center gap-1">
+                <span class="text-white">CYNOVA</span><span class="text-gold-500">.</span>
+            </a>
+            <a href="/" class="text-xs tracking-[0.2em] text-neutral-400 hover:text-gold-400 uppercase transition-colors">← Back to Home</a>
+        </div>
+    </header>
+
+    <section id="careers" class="py-20 md:py-32 relative z-10 w-full overflow-hidden">
+        <div class="absolute inset-0 pointer-events-none">
+            <div class="absolute top-0 left-0 w-full h-1" style="background: linear-gradient(90deg, transparent, rgba(255,136,0,0.4), transparent)"></div>
+            <div class="absolute top-1/4 left-0 w-[500px] h-[500px]" style="background: radial-gradient(ellipse, rgba(255,136,0,0.04) 0%, transparent 70%)"></div>
+        </div>
+        <div class="container mx-auto px-6">
+            
+            <!-- Hero Header -->
+            <div class="mb-16 animate-fade-in-up">
+                <div class="flex flex-wrap items-center gap-4 mb-4">
+                    <span class="text-gold-500 font-sans tracking-[0.2em] text-xs uppercase">Telangana Career Hub</span>
+                    <span class="inline-block bg-gold-500 text-black text-xs font-bold px-3 py-1 tracking-widest animate-pulse">🔥 ACTIVELY HIRING</span>
+                </div>
+                <h2 class="text-5xl md:text-7xl font-serif text-white leading-none mb-6">
+                    Build The Future<br/><span class="gold-gradient-text italic">With Us</span>
+                </h2>
+                <p class="text-neutral-500 max-w-2xl font-light leading-relaxed">
+                    Cynova Energy is expanding aggressively across Telangana. Join a mission-driven team pioneering solar adoption in one of India's fastest-growing markets — and grow with us.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-10">
+                <!-- Open Roles Grid -->
+                <div class="lg:col-span-3 space-y-4 animate-fade-in-up delay-100 opacity-0">
+                    <h3 class="font-serif text-4xl text-white mb-6">Open Positions</h3>
+                    
+                    <div class="industrial-card p-6 flex items-center justify-between group cursor-pointer hover:border-gold-500/40 transition-all">
+                        <div class="flex items-center gap-4">
+                            <span class="text-3xl">⚡</span>
+                            <div>
+                                <div class="text-lg text-white font-medium mb-1">Solar Installation Engineer</div>
+                                <div class="flex items-center gap-3">
+                                    <span class="data-badge text-[10px]">Technical</span>
+                                    <span class="text-xs text-gold-400 font-medium hidden sm:inline">Competitive + incentives</span>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="text-gold-500 opacity-0 group-hover:opacity-100 transition-opacity text-lg font-serif">→</span>
+                    </div>
+                    
+                    <div class="industrial-card p-6 flex items-center justify-between group cursor-pointer hover:border-gold-500/40 transition-all">
+                        <div class="flex items-center gap-4">
+                            <span class="text-3xl">🤝</span>
+                            <div>
+                                <div class="text-lg text-white font-medium mb-1">Sales Executive</div>
+                                <div class="flex items-center gap-3">
+                                    <span class="data-badge text-[10px]">Sales</span>
+                                    <span class="text-xs text-gold-400 font-medium hidden sm:inline">Competitive + commissions</span>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="text-gold-500 opacity-0 group-hover:opacity-100 transition-opacity text-lg font-serif">→</span>
+                    </div>
+
+                    <div class="industrial-card p-6 flex items-center justify-between group cursor-pointer hover:border-gold-500/40 transition-all">
+                        <div class="flex items-center gap-4">
+                            <span class="text-3xl">🏗️</span>
+                            <div>
+                                <div class="text-lg text-white font-medium mb-1">Operations Manager</div>
+                                <div class="flex items-center gap-3">
+                                    <span class="data-badge text-[10px]">Management</span>
+                                    <span class="text-xs text-gold-400 font-medium hidden sm:inline">Competitive + incentives</span>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="text-gold-500 opacity-0 group-hover:opacity-100 transition-opacity text-lg font-serif">→</span>
+                    </div>
+
+                    <div class="industrial-card p-6 flex items-center justify-between group cursor-pointer hover:border-gold-500/40 transition-all">
+                        <div class="flex items-center gap-4">
+                            <span class="text-3xl">🛠️</span>
+                            <div>
+                                <div class="text-lg text-white font-medium mb-1">Technical Support Specialist</div>
+                                <div class="flex items-center gap-3">
+                                    <span class="data-badge text-[10px]">Support</span>
+                                    <span class="text-xs text-gold-400 font-medium hidden sm:inline">Competitive + benefits</span>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="text-gold-500 opacity-0 group-hover:opacity-100 transition-opacity text-lg font-serif">→</span>
+                    </div>
+
+                    <!-- Benefits Note -->
+                    <div class="glass-gold p-6 mt-6 rounded-sm">
+                        <div class="flex flex-wrap items-center justify-between gap-4">
+                            <div>
+                                <div class="text-xs text-neutral-500 tracking-[0.2em] uppercase mb-1">Career Path</div>
+                                <div class="font-serif text-3xl gold-gradient-text shimmer-text">Rapid Growth</div>
+                                <div class="text-neutral-400 mt-1">Join the industry's premium standard.</div>
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <div class="text-sm text-neutral-300 tracking-wider flex items-center gap-2"><span>🎓 Internship Programs</span></div>
+                                <div class="text-sm text-neutral-300 tracking-wider flex items-center gap-2"><span>📜 Training & Certification</span></div>
+                                <div class="text-sm text-neutral-300 tracking-wider flex items-center gap-2"><span>🏆 Fast-Track Advancement</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CV Drop Area (FORM) -->
+                <div class="lg:col-span-2 industrial-card p-8 flex flex-col animate-fade-in-up delay-200 opacity-0 relative">
+                    
+                    <h3 class="font-serif text-3xl text-white mb-2">Application Form</h3>
+                    <p class="text-neutral-400 font-light leading-relaxed mb-8">Apply for a role or join our intern track. We'll reach out within 48 hours.</p>
+
+                    <form id="career-form" class="flex flex-col gap-5 flex-grow relative">
+                        <!-- Loading Overlay -->
+                        <div id="form-loading" class="absolute -inset-4 bg-[#080808]/80 backdrop-blur-md z-50 flex flex-col items-center justify-center rounded-lg border border-gold-500/20" style="display: none;">
+                            <div class="spinner mb-4"></div>
+                            <p class="text-gold-500 text-xs tracking-[0.2em] uppercase">Uploading Data...</p>
+                        </div>
+
+                        <div>
+                            <label class="text-xs text-neutral-500 tracking-[0.2em] uppercase mb-1.5 block">Full Name</label>
+                            <input type="text" name="FullName" required
+                                class="w-full bg-luxury-950 border border-gold-500/20 px-4 py-3 text-white text-sm focus:outline-none focus:border-gold-500/50 transition-colors placeholder:text-neutral-700 rounded-sm"
+                                placeholder="Your full name" />
+                        </div>
+                        
+                        <div>
+                            <label class="text-xs text-neutral-500 tracking-[0.2em] uppercase mb-1.5 block">Email Address</label>
+                            <input type="email" name="Email" required
+                                class="w-full bg-luxury-950 border border-gold-500/20 px-4 py-3 text-white text-sm focus:outline-none focus:border-gold-500/50 transition-colors placeholder:text-neutral-700 rounded-sm"
+                                placeholder="Your email address" />
+                        </div>
+                        
+                        <div>
+                            <label class="text-xs text-neutral-500 tracking-[0.2em] uppercase mb-1.5 block">Phone Number</label>
+                            <input type="tel" name="Phone" required pattern="[0-9]{10}"
+                                class="w-full bg-luxury-950 border border-gold-500/20 px-4 py-3 text-white text-sm focus:outline-none focus:border-gold-500/50 transition-colors placeholder:text-neutral-700 rounded-sm"
+                                placeholder="e.g. 9951696888" />
+                        </div>
+
+                        <div>
+                            <label class="text-xs text-neutral-500 tracking-[0.2em] uppercase mb-1.5 block">Role Applying For</label>
+                            <select name="Position" required
+                                class="w-full bg-luxury-950 border border-gold-500/20 px-4 py-3 text-white text-sm focus:outline-none focus:border-gold-500/50 transition-colors rounded-sm appearance-none cursor-pointer">
+                                <option value="" disabled selected>Select a Position</option>
+                                <option value="Solar Installation Engineer">Solar Installation Engineer</option>
+                                <option value="Sales Executive">Sales Executive</option>
+                                <option value="Operations Manager">Operations Manager</option>
+                                <option value="Technical Support Specialist">Technical Support Specialist</option>
+                                <option value="Marketing Intern">Marketing Intern</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="text-xs text-neutral-500 tracking-[0.2em] uppercase mb-1.5 block">LinkedIn Profile (Optional)</label>
+                            <input type="url" name="LinkedIn"
+                                class="w-full bg-luxury-950 border border-gold-500/20 px-4 py-3 text-white text-sm focus:outline-none focus:border-gold-500/50 transition-colors placeholder:text-neutral-700 rounded-sm"
+                                placeholder="https://linkedin.com/in/..." />
+                        </div>
+
+                        <div>
+                            <label class="text-xs text-neutral-500 tracking-[0.2em] uppercase mb-1.5 block">Upload Resume (PDF/DOC)</label>
+                            <div onclick="document.getElementById('resume-file').click()"
+                                class="w-full border border-dashed border-gold-500/25 rounded-sm px-4 py-6 text-center cursor-pointer hover:border-gold-500/50 transition-colors group relative bg-luxury-950/50">
+                                <div class="text-2xl mb-2">📎</div>
+                                <div id="file-name-display" class="text-xs text-neutral-500 group-hover:text-neutral-300 transition-colors">
+                                    Click to upload your CV (Max 3MB)
+                                </div>
+                                <input type="file" id="resume-file" accept=".pdf,.doc,.docx" class="hidden" required />
+                                <input type="hidden" name="Resume" id="resume-base64">
+                                <input type="hidden" name="ResumeMimeType" id="resume-mime">
+                                <input type="hidden" name="ResumeName" id="resume-name">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="text-xs text-neutral-500 tracking-[0.2em] uppercase mb-1.5 block">Cover Letter / Why Cynova?</label>
+                            <textarea name="CoverLetter" rows="3"
+                                class="w-full bg-luxury-950 border border-gold-500/20 px-4 py-3 text-white text-sm focus:outline-none focus:border-gold-500/50 transition-colors placeholder:text-neutral-700 rounded-sm resize-none"
+                                placeholder="Tell us about your passion for renewable energy..."></textarea>
+                        </div>
+
+                        <button type="submit" id="submit-btn" class="btn-luxury py-4 rounded-full font-bold text-sm tracking-[0.2em] uppercase mt-2 w-full">
+                            Submit Application →
+                        </button>
+                    </form>
+
+                    <!-- Success Message -->
+                    <div id="success-msg" class="flex-grow flex-col items-center justify-center text-center gap-4 py-16" style="display: none;">
+                        <div class="text-5xl mb-4">🎉</div>
+                        <h4 class="font-serif text-3xl text-white mb-2">Application Received!</h4>
+                        <p class="text-neutral-400">Our HR team will review your profile and get in touch shortly.</p>
+                        <button onclick="window.location.reload()" class="mt-8 px-6 py-2 border border-gold-500/30 text-gold-400 hover:bg-gold-500/10 rounded-full text-xs tracking-widest uppercase transition-all">Submit Another</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="relative pt-20 pb-12 overflow-hidden flex flex-col items-center border-t border-gold-500/10">
+        <div class="relative z-10 container mx-auto px-6 flex flex-col items-center">
+            <div class="text-3xl font-serif tracking-widest text-white mb-4 opacity-80">
+                CYNOVA<span class="text-gold-500">.</span>
+            </div>
+            <p class="text-xs text-neutral-500 tracking-[0.2em] uppercase">© 2026 Cynova Energy Corp. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const form = document.getElementById('career-form');
+        const loading = document.getElementById('form-loading');
+        const successMsg = document.getElementById('success-msg');
+        const submitBtn = document.getElementById('submit-btn');
+
+        // File to Base64 logic
+        const fileInput = document.getElementById('resume-file');
+        const base64Input = document.getElementById('resume-base64');
+        const mimeInput = document.getElementById('resume-mime');
+        const nameInput = document.getElementById('resume-name');
+        const fileNameDisplay = document.getElementById('file-name-display');
+
+        fileInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if(file) {
+                if(file.size > 3 * 1024 * 1024) {
+                    alert('File is too large. Maximum size is 3MB.');
+                    this.value = '';
+                    base64Input.value = '';
+                    fileNameDisplay.innerHTML = 'Click to upload your CV (Max 3MB)';
+                    return;
+                }
+                
+                nameInput.value = file.name;
+                mimeInput.value = file.type;
+                fileNameDisplay.innerHTML = `<span class="text-gold-400">${file.name}</span>`;
+                
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const base64Data = event.target.result.split(',')[1];
+                    base64Input.value = base64Data;
+                };
+                reader.readAsDataURL(file);
+            } else {
+                fileNameDisplay.innerHTML = 'Click to upload your CV (Max 3MB)';
+            }
+        });
+
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbyY_nlOmaZ-lZd_YVPHqy4wp8MeUHp5J2bNJh5y9h_GwFnqXOmlVvywbCUBNL5mFqn7pA/exec';
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+
+            // Show loading state
+            loading.style.display = 'flex';
+            submitBtn.disabled = true;
+
+            // Form submission using fetch
+            fetch(scriptURL, { method: 'POST', body: new FormData(form), mode: 'no-cors' })
+                .then(response => {
+                    loading.style.display = 'none';
+                    form.style.display = 'none';
+                    successMsg.style.display = 'flex';
+                })
+                .catch(error => {
+                    loading.style.display = 'none';
+                    submitBtn.disabled = false;
+                    alert('There was an error submitting your application. Please try again.');
+                    console.error('Submission Error:', error.message);
+                });
+        });
+    </script>
+</body>
+</html>
