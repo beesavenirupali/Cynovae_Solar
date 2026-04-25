@@ -119,11 +119,11 @@ function Navbar() {
                             <a href="#solar-solutions" onClick={() => setMobileMenuOpen(false)} className="text-slate-500 hover:text-orange-400 transition-colors">Solar Solutions</a>
                             <a href="#impact" onClick={() => setMobileMenuOpen(false)} className="text-slate-500 hover:text-orange-400 transition-colors">Impact</a>
                             <a href="#testimonials" onClick={() => setMobileMenuOpen(false)} className="text-slate-500 hover:text-orange-400 transition-colors">Testimonials</a>
-                            <a href="/career.html" onClick={() => setMobileMenuOpen(false)} className="text-slate-500 hover:text-orange-400 transition-colors">Career</a>
+                            <a href="career.html" onClick={() => setMobileMenuOpen(false)} className="text-slate-500 hover:text-orange-400 transition-colors">Career</a>
                         </nav>
 
                         <div className="mt-8 pt-8 border-t border-slate-200 sm:hidden">
-                            <button onClick={() => window.location.href = '/signup.html'} className="w-full btn-luxury px-6 py-4 rounded-full font-bold text-[10px] tracking-widest uppercase transition-all whitespace-nowrap text-center">
+                            <button onClick={() => window.location.href = 'signup.html'} className="w-full btn-luxury px-6 py-4 rounded-full font-bold text-[10px] tracking-widest uppercase transition-all whitespace-nowrap text-center">
                                 Sign up for free electricity
                             </button>
                         </div>
