@@ -74,10 +74,10 @@ function Navbar() {
                     <a href="#impact" className="text-slate-900 hover:text-orange-400 transition-colors py-4">Impact</a>
                     <a href="#testimonials" className="text-slate-900 hover:text-orange-400 transition-colors py-4">Testimonials</a>
 
-                    <a href="/career.html" className="text-slate-900 hover:text-orange-400 transition-colors py-4">Career</a>
+                    <a href="career.html" className="text-slate-900 hover:text-orange-400 transition-colors py-4">Career</a>
                 </nav>
                 <div className="flex items-center gap-4 sm:gap-6 z-50 relative">
-                    <button onClick={() => window.location.href = '/signup.html'} className="hidden sm:block btn-luxury px-6 py-3 rounded-full font-bold text-[10px] tracking-widest uppercase transition-all whitespace-nowrap">
+                    <button onClick={() => window.location.href = 'signup.html'} className="hidden sm:block btn-luxury px-6 py-3 rounded-full font-bold text-[10px] tracking-widest uppercase transition-all whitespace-nowrap">
                         Sign up for free electricity
                     </button>
                     <button className="lg:hidden text-slate-900 p-2" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
@@ -715,7 +715,7 @@ function SectorSections() {
                                         ))}
                                     </div>
                                     <div className="flex flex-wrap gap-3">
-                                        <a href="/signup.html" className="btn-luxury px-8 py-3 rounded-full font-bold text-sm tracking-wider uppercase inline-block text-center">Schedule 3D Tour</a>
+                                        <a href="signup.html" className="btn-luxury px-8 py-3 rounded-full font-bold text-sm tracking-wider uppercase inline-block text-center">Schedule 3D Tour</a>
                                     </div>
                                 </div>
                                 {/* 3D Amenity Tours Card */}
