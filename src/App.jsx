@@ -50,12 +50,12 @@ function Navbar() {
             style={{ backgroundColor: navBackground, backdropFilter: navBackdrop, WebkitBackdropFilter: navBackdrop }}
             className="fixed top-0 left-0 right-0 z-[100] border-b border-orange-500/10 transition-all w-full"
         >
-            <div className="container mx-auto px-8 py-6 flex items-center justify-between">
+            <div className="container mx-auto px-8 py-4 flex items-center justify-between">
                 <div className="text-3xl font-serif tracking-widest flex items-center gap-2 z-50 relative">
                     <span className="text-slate-900">CYNOVA</span>
                     <span className="text-orange-500">SOLAR</span>
                 </div>
-                <nav className="hidden lg:flex gap-6 xl:gap-8 font-bold text-[10px] xl:text-xs tracking-[0.2em] uppercase items-center">
+                <nav className="hidden lg:flex gap-3 xl:gap-5 font-bold text-[10px] xl:text-xs tracking-[0.1em] uppercase items-center">
                     <a href="#hero" className="text-slate-900 hover:text-orange-400 transition-colors py-4">Home</a>
 
                     <div className="relative group">
@@ -163,7 +163,7 @@ function Hero() {
                 ))}
             </div>
 
-            <div className="container mx-auto px-6 relative z-30 flex flex-col items-center text-center mt-20">
+            <div className="container mx-auto px-6 relative z-30 flex flex-col items-center text-center mt-32">
                 <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.2, ease: "easeOut" }}>
                     <div className="inline-block tracking-[0.3em] text-orange-500 text-xs font-bold uppercase mb-6 border border-orange-500/30 px-6 py-2 rounded-full backdrop-blur-md">
                         Go Solar at Zero Investment
