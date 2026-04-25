@@ -1326,7 +1326,7 @@ function App() {
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8">
                         <div className="md:col-span-2">
                             <div className="flex items-center justify-center md:justify-start gap-4 mb-6">
-                                <img src="/favicon.png" alt="Cynova Solar Logo" className="w-12 h-12 object-contain brightness-110" />
+                                <img src="favicon.png" alt="Cynova Solar Logo" className="w-12 h-12 object-contain brightness-110" />
                                 <div className="text-3xl font-serif tracking-widest text-white">
                                     CYNOVA<span className="text-orange-500"> SOLAR</span>
                                 </div>
